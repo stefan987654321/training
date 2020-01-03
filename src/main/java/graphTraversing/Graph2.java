@@ -1,6 +1,6 @@
 package graphTraversing;
 
-public class Graph2 implements GraphTemplate {
+public class Graph2 implements GraphTemplate<String> {
 
     private final static String R = "r";
     private final static String M = "m";
@@ -10,8 +10,8 @@ public class Graph2 implements GraphTemplate {
     private final static String Q = "q";
 
     @Override
-    public Graph getGraph() {
-        Graph graph = new Graph();
+    public Graph<String> getGraph() {
+        Graph<String> graph = new Graph<>();
         graph.addVertex(R);
         graph.addVertex(M);
         graph.addVertex(N);

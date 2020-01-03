@@ -2,7 +2,7 @@ package graphTraversing;
 
 public interface GraphTemplate<T> {
 
-    Graph getGraph();
+    Graph<T> getGraph();
 
     T getRoot();
 }
