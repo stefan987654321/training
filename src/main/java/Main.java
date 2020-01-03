@@ -1,3 +1,7 @@
+import graphTraversing.Graph1;
+import graphTraversing.Graph2;
+import graphTraversing.Graph3;
+import graphTraversing.GraphTraverser;
 import timeApi.TimeProvider;
 import treeTraversing.*;
 
@@ -23,5 +27,11 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Cannot provide current time!");
         }
+
+        GraphTraverser graphTraverser = new GraphTraverser();
+
+        graphTraverser.print(new Graph1());
+        graphTraverser.print(new Graph2());
+        graphTraverser.print(new Graph3());
     }
 }
