@@ -3,17 +3,17 @@ package sorting
 import sorting.dataproviders.DataProvider
 import spock.lang.Specification
 
-class BubbleSortTest extends Specification {
+class HeapSortTest extends Specification {
 
     def "Should return doubles ordered from the smallest to the largest"() {
 
         given:
         DataProvider dataProvider = Mock()
         dataProvider.provideData() >> data
-        Sort bubbleSort = new BubbleSort(dataProvider)
+        Sort heapSort = new HeapSort(dataProvider)
 
         when:
-        def givenResult = bubbleSort.sort()
+        def givenResult = heapSort.sort()
 
         then:
         givenResult == expectedResult
@@ -27,5 +27,4 @@ class BubbleSortTest extends Specification {
 
 
     }
-
 }

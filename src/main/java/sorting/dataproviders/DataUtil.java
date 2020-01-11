@@ -1,11 +1,10 @@
-package sorting;
+package sorting.dataproviders;
 
 import java.util.Random;
 
-public class DataProvider implements SomeDataProvider{
+public class DataUtil {
 
-    @Override
-    public double[] provideData(int amount) {
+    public static double[] getDoublesData(int amount) {
         double[] data = new double[amount];
         Random random = new Random();
 

@@ -1,17 +1,18 @@
 package sorting;
 
-public class BubbleSort {
-    private SomeDataProvider dataProvider;
-    private final int amount;
+import sorting.dataproviders.DataProvider;
+
+public class BubbleSort implements Sort {
+    private int amount;
     double data[];
 
-    public BubbleSort(SomeDataProvider dataProvider, int amount) {
-        this.dataProvider = dataProvider;
-        this.amount = amount;
+    public BubbleSort(DataProvider dataProvider) {
+        this.data = dataProvider.provideData();
+        amount = data.length;
     }
 
+    @Override
     public double[] sort() {
-        data = dataProvider.provideData(amount);
 
         boolean isChanged = true;
         while (isChanged) {
@@ -31,6 +32,5 @@ public class BubbleSort {
         }
         return data;
     }
-
 
 }
