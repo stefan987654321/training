@@ -25,7 +25,9 @@ public class Main {
     }
 
     private static void generateSortingReport() {
-        SortingReportGenerator sortingReportGenerator = new SortingReportGenerator(10000);
+        double[] data = DataUtil.getDoublesData(10);
+
+        SortingReportGenerator sortingReportGenerator = new SortingReportGenerator("file.txt", data);
         try {
             sortingReportGenerator.generate();
         } catch (SortingReportException e) {

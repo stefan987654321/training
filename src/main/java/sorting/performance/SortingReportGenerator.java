@@ -1,40 +1,37 @@
 package sorting.performance;
 
 import sorting.SortType;
-import sorting.dataproviders.DataUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SortingReportGenerator {
 
-    private static final String PATH = "report.csv";
     public static final String AMOUNT_HEADER = "Amount";
     public static final String TAB = "\t";
     private final double[] data;
-    private PerformanceTester performanceTester;
-    private int amount;
+    private final String path;
+    private final int amount;
 
-    public SortingReportGenerator(int amount) {
-        this.amount = amount;
-        data = DataUtil.getDoublesData(amount);
+    public SortingReportGenerator(String path, double[] data) {
+        this.amount = data.length;
+        this.path = path;
+        this.data = data;
     }
 
     public void generate() throws SortingReportException {
         Map<String, Map<Integer, Long>> results = new LinkedHashMap<>();
-        Map<Integer, Long> bubbleResults = getResults(SortType.BUBBLE);
-        Map<Integer, Long> heapResults = getResults(SortType.HEAP);
 
-        if (bubbleResults.size() != amount || heapResults.size() != amount) {
-            throw new SortingReportException("Data corrupted!");
-        }
-
-        results.put(SortType.BUBBLE.toString(), bubbleResults);
-        results.put(SortType.HEAP.toString(), heapResults);
+        results.put(SortType.BUBBLE.toString(), getResults(SortType.BUBBLE));
+        results.put(SortType.HEAP.toString(), getResults(SortType.HEAP));
+        results.put(SortType.QUICK.toString(), getResults(SortType.QUICK));
 
         createCsv(prepareData(results));
     }
@@ -44,7 +41,7 @@ public class SortingReportGenerator {
 
         List<String> headers = createHeaders(results);
         data.put(AMOUNT_HEADER, headers);
-        for (int i = 0; i <amount; i++) {
+        for (int i = 0; i < amount; i++) {
             String key = String.valueOf(i);
             data.putIfAbsent(key, new ArrayList<>());
             for (String h : headers) {
@@ -72,7 +69,7 @@ public class SortingReportGenerator {
 
 
     private void createCsv(Map<String, List<String>> results) throws SortingReportException {
-        File file = new File(PATH);
+        File file = new File(path);
 
         if (file.exists() == true) {
 
@@ -80,7 +77,7 @@ public class SortingReportGenerator {
             file.setReadable(true);
             file.setWritable(true);
         }
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(PATH))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(path))) {
 
             for (String k : results.keySet()) {
                 writer.write(k + TAB + parseList(results.get(k)) + "\n");
