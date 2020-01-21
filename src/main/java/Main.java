@@ -17,15 +17,15 @@ public class Main {
     public static void main(String[] args) {
 
 
-//        runTreeTraverser();
-//        runTimeProvider();
-//        runGraphTraverser();
-//        runSortingPerformanceTester();
+        runTreeTraverser();
+        runTimeProvider();
+        runGraphTraverser();
+        runSortingPerformanceTester();
         generateSortingReport();
     }
 
     private static void generateSortingReport() {
-        double[] data = DataUtil.getDoublesData(10);
+        double[] data = DataUtil.getDoublesData(10000);
 
         SortingReportGenerator sortingReportGenerator = new SortingReportGenerator("file.txt", data);
         try {

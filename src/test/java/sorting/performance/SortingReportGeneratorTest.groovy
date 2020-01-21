@@ -38,7 +38,7 @@ class SortingReportGeneratorTest extends Specification {
         def content = readFile(file)
 
         then:
-        content.contains("Amount")
+        content.contains(SortingReportGenerator.AMOUNT_HEADER)
         content.contains(SortType.BUBBLE.toString())
         content.contains(SortType.HEAP.toString())
         content.contains(SortType.QUICK.toString())

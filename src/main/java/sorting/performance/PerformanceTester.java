@@ -5,6 +5,7 @@ import sorting.SortFactory;
 import sorting.SortType;
 import sorting.dataproviders.HardcodedDataProvider;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
